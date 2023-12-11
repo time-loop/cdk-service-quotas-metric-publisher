@@ -39,14 +39,13 @@
   "devDependencies": {
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
-    "@aws-sdk/client-cloudwatch": "^3.427.0",
     "@time-loop/clickup-projen": "^0.0.181",
     "@types/jest": "^29.5.6",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk-lib": "2.105.0",
-    "aws-sdk-mock": "^5.8.0",
+    "aws-sdk-client-mock": "^3.0.0",
     "constructs": "10.0.5",
     "esbuild": "^0.19.5",
     "eslint": "^8",
@@ -78,9 +77,13 @@
     "multi-convention-namer": "^0.1.15"
   },
   "dependencies": {
+    "@aws-sdk/client-cloudwatch": "^3.468.0",
+    "@aws-sdk/client-service-quotas": "^3.468.0",
     "aws-sdk": "^2.1477.0"
   },
   "bundledDependencies": [
+    "@aws-sdk/client-cloudwatch",
+    "@aws-sdk/client-service-quotas",
     "aws-sdk"
   ],
   "keywords": [

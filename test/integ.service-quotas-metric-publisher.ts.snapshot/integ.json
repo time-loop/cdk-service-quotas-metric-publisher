@@ -1,0 +1,20 @@
+{
+  "enableLookups": true,
+  "version": "34.0.0",
+  "testCases": {
+    "integ/DefaultTest": {
+      "stacks": [
+        "MonitorBaselineSevicesQuotas"
+      ],
+      "cdkCommandOptions": {
+        "destroy": {
+          "args": {
+            "force": true
+          }
+        }
+      },
+      "assertionStack": "integ/DefaultTest/DeployAssert",
+      "assertionStackName": "integDefaultTestDeployAssert946684A0"
+    }
+  }
+}
