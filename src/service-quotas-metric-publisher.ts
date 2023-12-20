@@ -1,4 +1,12 @@
-import { aws_iam, aws_lambda_nodejs, aws_events, aws_events_targets, aws_logs, Duration } from 'aws-cdk-lib';
+import {
+  aws_iam,
+  aws_lambda_nodejs,
+  aws_lambda,
+  aws_events,
+  aws_events_targets,
+  aws_logs,
+  Duration,
+} from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Namer } from 'multi-convention-namer';
 
@@ -62,6 +70,7 @@ export class ServiceQuotasMetricPublisher extends Construct {
     const myConstruct = this;
 
     this.handler = new aws_lambda_nodejs.NodejsFunction(myConstruct, 'monitor', {
+      runtime: aws_lambda.Runtime.NODEJS_18_X,
       bundling: {
         externalModules: ['@aws-sdk/*'],
         minify: true,
