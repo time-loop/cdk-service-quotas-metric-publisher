@@ -39,7 +39,6 @@ exports.handler = async () => {
               { Name: 'QuotaCode', Value: 'L-7E6692B2' },
               { Name: 'QuotaName', Value: 'Targets per Application Load Balancer' },
               { Name: 'ServiceCode', Value: 'elasticloadbalancing' },
-              { Name: 'AwsRegion', Value: 'us-west-2' },
             ],
           },
           Period: 60,

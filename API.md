@@ -141,7 +141,6 @@ Any object.
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.cwNamespace">cwNamespace</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.handler">handler</a></code> | <code>aws-cdk-lib.aws_lambda_nodejs.NodejsFunction</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.publishFrequency">publishFrequency</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.regionsToMonitor">regionsToMonitor</a></code> | <code>string[]</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.rule">rule</a></code> | <code>aws-cdk-lib.aws_events.Rule</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.serviceQuotas">serviceQuotas</a></code> | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.IServiceQuota">IServiceQuota</a>[]</code> | *No description.* |
 
@@ -189,16 +188,6 @@ public readonly publishFrequency: number;
 
 ---
 
-##### `regionsToMonitor`<sup>Required</sup> <a name="regionsToMonitor" id="@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.regionsToMonitor"></a>
-
-```typescript
-public readonly regionsToMonitor: string[];
-```
-
-- *Type:* string[]
-
----
-
 ##### `rule`<sup>Required</sup> <a name="rule" id="@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisher.property.rule"></a>
 
 ```typescript
@@ -239,7 +228,6 @@ const serviceQuotasMetricPublisherProps: ServiceQuotasMetricPublisherProps = { .
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisherProps.property.cloudwatchLogsRetention">cloudwatchLogsRetention</a></code> | <code>aws-cdk-lib.aws_logs.RetentionDays</code> | How long to retain logs published to CloudWatch logs. |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisherProps.property.cwNamespace">cwNamespace</a></code> | <code>string</code> | The CloudWatch namespace to publish metrics to. |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisherProps.property.publishFrequency">publishFrequency</a></code> | <code>number</code> | Time intervals that Lambda will be triggered to publish metric in CloudWatch. |
-| <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisherProps.property.regionsToMonitor">regionsToMonitor</a></code> | <code>string[]</code> | The list of regions to monitor the quotas. |
 | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisherProps.property.serviceQuotas">serviceQuotas</a></code> | <code><a href="#@time-loop/cdk-service-quotas-metric-publisher.IServiceQuota">IServiceQuota</a>[]</code> | The list of service quotas to monitor. |
 
 ---
@@ -280,19 +268,6 @@ public readonly publishFrequency: number;
 - *Default:* 1440 (1 day)
 
 Time intervals that Lambda will be triggered to publish metric in CloudWatch.
-
----
-
-##### `regionsToMonitor`<sup>Optional</sup> <a name="regionsToMonitor" id="@time-loop/cdk-service-quotas-metric-publisher.ServiceQuotasMetricPublisherProps.property.regionsToMonitor"></a>
-
-```typescript
-public readonly regionsToMonitor: string[];
-```
-
-- *Type:* string[]
-- *Default:* ['us-east-1']
-
-The list of regions to monitor the quotas.
 
 ---
 

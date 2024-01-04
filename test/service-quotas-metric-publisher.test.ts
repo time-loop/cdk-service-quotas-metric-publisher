@@ -17,7 +17,6 @@ let defaultServiceQuotasMetricPublisherProps: ServiceQuotasMetricPublisherProps 
       quotaCode: 'L-7E6692B2',
     },
   ],
-  regionsToMonitor: ['us-west-2'],
 };
 let serviceQuotasMetricPublisher: ServiceQuotasMetricPublisher;
 

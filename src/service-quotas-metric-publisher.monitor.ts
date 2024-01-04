@@ -20,7 +20,6 @@ import { IServiceQuota } from './service-quotas-metric-publisher';
 interface ServiceQuotaApplied extends IServiceQuota {
   quotaName: string | undefined;
   value: number | undefined;
-  region: string | undefined;
 }
 
 /**
@@ -37,44 +36,35 @@ export const monitor = async () => {
       throw new Error('SERVICE_QUOTAS_LIST environment variable not set');
     }
 
-    if (!process.env.REGIONS_TO_MONITOR) {
-      throw new Error('REGIONS_TO_MONITOR environment variable not set');
-    }
-
     const cwNamespace: string = process.env.CW_NAMESPACE;
     const serviceQuotas: IServiceQuota[] = JSON.parse(process.env.SERVICE_QUOTAS_LIST);
-    const regionsToMonitor: string[] = JSON.parse(process.env.REGIONS_TO_MONITOR);
 
     // Call the getServiceQuota API to get the information about the quota
     const servicesQuotasApplied: ServiceQuotaApplied[] = [];
-    for (const region of regionsToMonitor) {
-      console.log(`Getting service quotas for region ${region}`);
-      const servicequotas = new ServiceQuotasClient({ region });
-      for (const serviceQuota of serviceQuotas) {
-        console.log(`Getting service quota for ${serviceQuota.serviceCode} - ${serviceQuota.quotaCode}`);
-        const params: GetServiceQuotaCommandInput = {
-          ServiceCode: serviceQuota.serviceCode,
-          QuotaCode: serviceQuota.quotaCode,
-        };
-        const command = new GetServiceQuotaCommand(params);
-        const data = await servicequotas.send(command);
-        if (!data.Quota) {
-          console.error(`No quota found for ${serviceQuota.serviceCode} - ${serviceQuota.quotaCode}`);
-          continue;
-        }
-        console.log(
-          `Successfully called getServiceQuota for ${serviceQuota.serviceCode} - ${
-            serviceQuota.quotaCode
-          }.\n Data: ${JSON.stringify(data)}`,
-        );
-        servicesQuotasApplied.push({
-          serviceCode: data.Quota?.ServiceCode as String,
-          quotaName: data.Quota?.QuotaName as String,
-          quotaCode: data.Quota?.QuotaCode as String,
-          value: data.Quota?.Value,
-          region: region,
-        });
+    const servicequotas = new ServiceQuotasClient();
+    for (const serviceQuota of serviceQuotas) {
+      console.log(`Getting service quota for ${serviceQuota.serviceCode} - ${serviceQuota.quotaCode}`);
+      const params: GetServiceQuotaCommandInput = {
+        ServiceCode: serviceQuota.serviceCode,
+        QuotaCode: serviceQuota.quotaCode,
+      };
+      const command = new GetServiceQuotaCommand(params);
+      const data = await servicequotas.send(command);
+      if (!data.Quota || Object.keys(data.Quota).length === 0) {
+        console.error(`No quota found for ${serviceQuota.serviceCode} - ${serviceQuota.quotaCode}`);
+        continue;
       }
+      console.log(
+        `Successfully called getServiceQuota for ${serviceQuota.serviceCode} - ${
+          serviceQuota.quotaCode
+        }.\n Data: ${JSON.stringify(data)}`,
+      );
+      servicesQuotasApplied.push({
+        serviceCode: data.Quota?.ServiceCode as String,
+        quotaName: data.Quota?.QuotaName as String,
+        quotaCode: data.Quota?.QuotaCode as String,
+        value: data.Quota?.Value,
+      });
     }
     // Publish the metric data to CloudWatch
     const cloudwatch = new CloudWatchClient();
@@ -83,7 +73,6 @@ export const monitor = async () => {
         { Name: 'QuotaCode', Value: serviceQuota.quotaCode },
         { Name: 'QuotaName', Value: serviceQuota.quotaName },
         { Name: 'ServiceCode', Value: serviceQuota.serviceCode },
-        { Name: 'AwsRegion', Value: serviceQuota.region },
       ];
       const metricData: MetricDatum[] = [
         {

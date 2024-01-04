@@ -15,7 +15,6 @@ export class BaselineStack extends Stack {
     super(scope, id.pascal, props);
     this.lambdaFunction = new ServiceQuotasMetricPublisher(this, id, {
       publishFrequency: 1,
-      regionsToMonitor: ['us-west-2'],
       cwNamespace: 'AWS/ServiceQuotaLimit',
       serviceQuotas: [
         {
