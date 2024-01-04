@@ -36,11 +36,6 @@ export interface ServiceQuotasMetricPublisherProps {
    * @default ServiceQuotas[]
    */
   readonly serviceQuotas?: IServiceQuota[];
-  /**
-   * The list of regions to monitor the quotas.
-   * @default  ['us-east-1']
-   */
-  readonly regionsToMonitor?: string[];
 }
 
 /**
@@ -48,7 +43,6 @@ export interface ServiceQuotasMetricPublisherProps {
  */
 export class ServiceQuotasMetricPublisher extends Construct {
   readonly publishFrequency: number;
-  readonly regionsToMonitor: string[];
   readonly handler: aws_lambda_nodejs.NodejsFunction;
   readonly rule: aws_events.Rule;
   readonly cwNamespace: string;
@@ -64,7 +58,6 @@ export class ServiceQuotasMetricPublisher extends Construct {
   constructor(scope: Construct, id: Namer, props: ServiceQuotasMetricPublisherProps) {
     super(scope, id.pascal);
     this.publishFrequency = props.publishFrequency ?? 1;
-    this.regionsToMonitor = props.regionsToMonitor ?? ['us-east-1'];
     this.serviceQuotas = props.serviceQuotas ?? [];
     this.cwNamespace = props.cwNamespace ?? 'AWS/ServiceQuotaLimit';
     const myConstruct = this;
@@ -105,7 +98,6 @@ export class ServiceQuotasMetricPublisher extends Construct {
 
     this.handler.addEnvironment('CW_NAMESPACE', props.cwNamespace ?? this.cwNamespace);
     this.handler.addEnvironment('SERVICE_QUOTAS_LIST', JSON.stringify(this.serviceQuotas));
-    this.handler.addEnvironment('REGIONS_TO_MONITOR', JSON.stringify(props.regionsToMonitor ?? this.regionsToMonitor));
     this.rule = new aws_events.Rule(this, 'rule', {
       schedule: aws_events.Schedule.rate(Duration.minutes(this.publishFrequency)),
     });

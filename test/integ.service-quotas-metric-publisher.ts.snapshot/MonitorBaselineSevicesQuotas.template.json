@@ -73,14 +73,13 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-425845004253-us-west-2",
-     "S3Key": "022bca39f4e853a1dd8e2da7a597acf779a4939f2377dbc56bb20da26bb9e3b1.zip"
+     "S3Key": "1a0598cc05b30d5f960a82f8e85e49a2525978dfe949e09bb5414f0d91c53cee.zip"
     },
     "Environment": {
      "Variables": {
       "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
       "CW_NAMESPACE": "AWS/ServiceQuotaLimit",
-      "SERVICE_QUOTAS_LIST": "[{\"serviceCode\":\"elasticloadbalancing\",\"quotaCode\":\"L-7E6692B2\"}]",
-      "REGIONS_TO_MONITOR": "[\"us-west-2\"]"
+      "SERVICE_QUOTAS_LIST": "[{\"serviceCode\":\"elasticloadbalancing\",\"quotaCode\":\"L-7E6692B2\"}]"
      }
     },
     "Handler": "index.monitor",

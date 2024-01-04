@@ -57,7 +57,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-425845004253-us-west-2",
-     "S3Key": "bd4479eeabd60939d305de637c84482dd0f2cb69729428a7372da67784eb3c63.zip"
+     "S3Key": "b5ae93b59b14215a5db218f1bbf46b72944e9fa6d91538a1022fcf9c61910186.zip"
     },
     "Environment": {
      "Variables": {

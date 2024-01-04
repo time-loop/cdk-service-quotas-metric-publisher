@@ -15,7 +15,6 @@ describe('monitor', () => {
   beforeEach(() => {
     process.env.CW_NAMESPACE = 'test-namespace';
     process.env.SERVICE_QUOTAS_LIST = JSON.stringify([{ serviceCode: 's3', quotaCode: 'L-ABCD1234' }]);
-    process.env.REGIONS_TO_MONITOR = JSON.stringify(['us-west-2']);
     cloudWatchMock.on(PutMetricDataCommand).resolves({});
     serviceQuotaMock
       .on(GetServiceQuotaCommand)
@@ -31,7 +30,6 @@ describe('monitor', () => {
           quotaCode: 'L-ABCD1234',
           quotaName: 'Bucket Limit',
           value: 1000,
-          region: 'us-west-2',
         },
       ],
     });
@@ -47,13 +45,9 @@ describe('monitor', () => {
     await expect(monitor()).rejects.toThrow('SERVICE_QUOTAS_LIST environment variable not set');
   });
 
-  it('should throw an error if REGIONS_TO_MONITOR environment variable is not set', async () => {
-    delete process.env.REGIONS_TO_MONITOR;
-    await expect(monitor()).rejects.toThrow('REGIONS_TO_MONITOR environment variable not set');
-  });
-
   it('should log "No results to publish" if there are no results', async () => {
-    process.env.REGIONS_TO_MONITOR = JSON.stringify([]);
+    serviceQuotaMock.reset();
+    serviceQuotaMock.on(GetServiceQuotaCommand).resolves({ Quota: {} });
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
     const result = await monitor();
     expect(result).toEqual({ servicesQuotasApplied: [] });
