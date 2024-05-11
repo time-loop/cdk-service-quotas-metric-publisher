@@ -22,7 +22,7 @@ jobs:
           role-to-assume: arn:aws:iam::425845004253:role/cdk-service-quotas-metric-publisher-github-actions-role
           role-duration-seconds: 900
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -30,22 +30,26 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.ALL_PACKAGE_READ_TOKEN }}
         run: |-
-          cat > .npmrc <<EOF
+          cat > ~/.npmrc <<EOF
           //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
           @time-loop:registry=https://npm.pkg.github.com/
           EOF
       - name: Make cdk-ecr-deployment sane
         run: export FORCE_PREBUILT_LAMBDA=1
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
         with:
-          node-version: 18.17.1
+          version: "9"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
       - name: Install dependencies
-        run: yarn install --check-files
+        run: pnpm i --no-frozen-lockfile
       - name: build
         run: npx projen build
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage
@@ -54,12 +58,14 @@ jobs:
         run: |-
           git add .
           git diff --staged --patch --exit-code > .repo.patch || echo "self_mutation_happened=true" >> $GITHUB_OUTPUT
+        working-directory: ./
       - name: Upload patch
         if: steps.self_mutation.outputs.self_mutation_happened
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: .repo.patch
           path: .repo.patch
+          overwrite: true
       - name: Fail build on mutation
         if: steps.self_mutation.outputs.self_mutation_happened
         run: |-
@@ -70,10 +76,11 @@ jobs:
         run: cd dist && getfacl -R . > permissions-backup.acl
         continue-on-error: true
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: dist
+          overwrite: true
   self-mutation:
     needs: build
     runs-on: ubuntu-latest
@@ -82,13 +89,13 @@ jobs:
     if: always() && needs.build.outputs.self_mutation_happened && !(github.event.pull_request.head.repo.full_name != github.repository)
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
       - name: Download patch
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: .repo.patch
           path: ${{ runner.temp }}
@@ -111,11 +118,11 @@ jobs:
     permissions: {}
     if: "! needs.build.outputs.self_mutation_happened"
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18.17.1
+          node-version: 20.11.1
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifact
           path: dist
@@ -126,16 +133,20 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.ALL_PACKAGE_READ_TOKEN }}
         run: |-
-          cat > .npmrc <<EOF
+          cat > ~/.npmrc <<EOF
           //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
           @time-loop:registry=https://npm.pkg.github.com/
           EOF
       - name: Make cdk-ecr-deployment sane
         run: export FORCE_PREBUILT_LAMBDA=1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: "9"
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
-        run: cd .repo && yarn install --check-files --frozen-lockfile
+        run: cd .repo && pnpm i --frozen-lockfile
       - name: Create js artifact
         run: cd .repo && npx projen package:js
       - name: Collect js Artifact
