@@ -43,8 +43,8 @@ importers:
         specifier: 2.105.0
         version: 2.105.0(constructs@10.0.5)
       aws-sdk-client-mock:
-        specifier: ^3.0.1
-        version: 3.1.0
+        specifier: ^4.0.0
+        version: 4.0.0
       constructs:
         specifier: 10.0.5
         version: 10.0.5
@@ -1211,8 +1211,8 @@ packages:
     engines: {node: '>= 14.15.0'}
     hasBin: true
 
-  aws-sdk-client-mock@3.1.0:
-    resolution: {integrity: sha512-3Mx5R8DDka2TB8qtr5jDbSVJsUM6uoX5tZSReBsJS8HunVtL9PHhb+RU7b+I3/53B2fJAyoEp7dJNXndBI+6MA==}
+  aws-sdk-client-mock@4.0.0:
+    resolution: {integrity: sha512-/rxo+pzCFaUozK7TyCqo3GYwzdBGn9Ai6EsT8ytXDoUXlD/Q5hw9hj2lOkCAyubECzGJFHMmQg9GZ1GOGlN/qQ==}
 
   aws-sdk@2.1618.0:
     resolution: {integrity: sha512-yfDi9cOpT+dnKMHaR8aFhRyISMItQrRW0v5usaNh7WvXl/YVN1YI0tMSdF1riqaOpbwKgk7162YBj+RoALimHg==}
@@ -5193,7 +5193,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
-  aws-sdk-client-mock@3.1.0:
+  aws-sdk-client-mock@4.0.0:
     dependencies:
       '@types/sinon': 10.0.20
       sinon: 16.1.3
