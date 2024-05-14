@@ -15,25 +15,29 @@ jobs:
       patch_created: ${{ steps.create_patch.outputs.patch_created }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
       - name: GitHub Packages authorization
         env:
           NPM_TOKEN: ${{ secrets.ALL_PACKAGE_READ_TOKEN }}
         run: |-
-          cat > .npmrc <<EOF
+          cat > ~/.npmrc <<EOF
           //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
           @time-loop:registry=https://npm.pkg.github.com/
           EOF
       - name: Make cdk-ecr-deployment sane
         run: export FORCE_PREBUILT_LAMBDA=1
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
         with:
-          node-version: 18.17.1
+          version: "9"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
       - name: Install dependencies
-        run: yarn install --check-files --frozen-lockfile
+        run: pnpm i --frozen-lockfile
       - name: Upgrade dependencies
         run: npx projen update-projen
       - name: Find mutations
@@ -41,12 +45,14 @@ jobs:
         run: |-
           git add .
           git diff --staged --patch --exit-code > .repo.patch || echo "patch_created=true" >> $GITHUB_OUTPUT
+        working-directory: ./
       - name: Upload patch
         if: steps.create_patch.outputs.patch_created
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: .repo.patch
           path: .repo.patch
+          overwrite: true
   pr:
     name: Create Pull Request
     needs: upgrade
@@ -56,11 +62,11 @@ jobs:
     if: ${{ needs.upgrade.outputs.patch_created }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
       - name: Download patch
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: .repo.patch
           path: ${{ runner.temp }}
@@ -72,7 +78,7 @@ jobs:
           git config user.email "github-actions@github.com"
       - name: Create Pull Request
         id: create-pr
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           commit-message: |-

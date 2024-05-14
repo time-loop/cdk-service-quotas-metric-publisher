@@ -13,11 +13,12 @@ jobs:
       contents: write
     outputs:
       latest_commit: ${{ steps.git_remote.outputs.latest_commit }}
+      tag_exists: ${{ steps.check_tag_exists.outputs.exists }}
     env:
       CI: "true"
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set git identity
@@ -28,51 +29,66 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.ALL_PACKAGE_READ_TOKEN }}
         run: |-
-          cat > .npmrc <<EOF
+          cat > ~/.npmrc <<EOF
           //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
           @time-loop:registry=https://npm.pkg.github.com/
           EOF
       - name: Make cdk-ecr-deployment sane
         run: export FORCE_PREBUILT_LAMBDA=1
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
         with:
-          node-version: 18.17.1
+          version: "9"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
       - name: Install dependencies
-        run: yarn install --check-files --frozen-lockfile
+        run: pnpm i --frozen-lockfile
       - name: release
         run: npx projen release
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage
+      - name: Check if version has already been tagged
+        id: check_tag_exists
+        run: |-
+          TAG=$(cat dist/dist/releasetag.txt)
+          ([ ! -z "$TAG" ] && git ls-remote -q --exit-code --tags origin $TAG && (echo "exists=true" >> $GITHUB_OUTPUT)) || (echo "exists=false" >> $GITHUB_OUTPUT)
+          cat $GITHUB_OUTPUT
       - name: Check for new commits
         id: git_remote
-        run: echo "latest_commit=$(git ls-remote origin -h ${{ github.ref }} | cut -f1)" >> $GITHUB_OUTPUT
+        run: |-
+          echo "latest_commit=$(git ls-remote origin -h ${{ github.ref }} | cut -f1)" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
       - name: Backup artifact permissions
         if: ${{ steps.git_remote.outputs.latest_commit == github.sha }}
         run: cd dist && getfacl -R . > permissions-backup.acl
         continue-on-error: true
       - name: Upload artifact
         if: ${{ steps.git_remote.outputs.latest_commit == github.sha }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: dist
+          overwrite: true
   release_github:
     name: Publish to GitHub Releases
-    needs: release
+    needs:
+      - release
+      - release_npm
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    if: needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18.17.1
+          node-version: 20.11.1
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifact
           path: dist
@@ -96,13 +112,13 @@ jobs:
     permissions:
       contents: read
       packages: write
-    if: needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18.17.1
+          node-version: 20.11.1
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifact
           path: dist
@@ -113,20 +129,24 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.ALL_PACKAGE_READ_TOKEN }}
         run: |-
-          cat > .npmrc <<EOF
+          cat > ~/.npmrc <<EOF
           //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
           @time-loop:registry=https://npm.pkg.github.com/
           EOF
       - name: Make cdk-ecr-deployment sane
         run: export FORCE_PREBUILT_LAMBDA=1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: "9"
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
-        run: cd .repo && yarn install --check-files --frozen-lockfile
-      - name: Create js artifact
-        run: cd .repo && npx projen package:js
+        run: cd .repo && pnpm i --frozen-lockfile
       - name: Remove .npmrc file for release
         run: rm .npmrc
+      - name: Create js artifact
+        run: cd .repo && npx projen package:js
       - name: Collect js Artifact
         run: mv .repo/dist dist
       - name: Release
@@ -146,7 +166,7 @@ jobs:
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifact
           path: dist
@@ -171,7 +191,7 @@ jobs:
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifact
           path: dist
