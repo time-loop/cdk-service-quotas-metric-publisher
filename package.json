@@ -39,7 +39,7 @@
   "devDependencies": {
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
-    "@time-loop/clickup-projen": "^1.10.6",
+    "@time-loop/clickup-projen": "^1.11.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
@@ -63,7 +63,7 @@
     "jsii-rosetta": "~5.3.0",
     "multi-convention-namer": "0.1.15",
     "prettier": "^3.2.5",
-    "projen": "^0.81.10",
+    "projen": "^0.81.16",
     "standard-version": "^9",
     "ts-jest": "^29.1.2",
     "ts-node": "^10",
@@ -98,12 +98,13 @@
   },
   "version": "0.0.0",
   "jest": {
+    "coverageProvider": "v8",
     "collectCoverageFrom": [
       "src/**/*.ts"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
+      "<rootDir>/@(test|src)/**/*(*.)@(spec|test).ts?(x)"
     ],
     "clearMocks": true,
     "collectCoverage": true,
