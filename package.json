@@ -76,13 +76,11 @@
   },
   "dependencies": {
     "@aws-sdk/client-cloudwatch": "^3.583.0",
-    "@aws-sdk/client-service-quotas": "^3.583.0",
-    "aws-sdk": "^2.1628.0"
+    "@aws-sdk/client-service-quotas": "^3.583.0"
   },
   "bundledDependencies": [
     "@aws-sdk/client-cloudwatch",
-    "@aws-sdk/client-service-quotas",
-    "aws-sdk"
+    "@aws-sdk/client-service-quotas"
   ],
   "pnpm": {},
   "keywords": [

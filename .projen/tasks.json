@@ -310,13 +310,13 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws-cdk/integ-tests-alpha,@time-loop/clickup-projen,@types/jest,aws-sdk-client-mock,esbuild,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-release,prettier,projen,ts-jest,@aws-sdk/client-cloudwatch,@aws-sdk/client-service-quotas,aws-sdk,multi-convention-namer"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws-cdk/integ-tests-alpha,@time-loop/clickup-projen,@types/jest,aws-sdk-client-mock,esbuild,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-release,prettier,projen,ts-jest,@aws-sdk/client-cloudwatch,@aws-sdk/client-service-quotas,multi-convention-namer"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @aws-cdk/integ-tests-alpha @time-loop/clickup-projen @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-sdk-client-mock esbuild eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-release jsii-rosetta jsii prettier projen standard-version ts-jest ts-node typescript @aws-sdk/client-cloudwatch @aws-sdk/client-service-quotas aws-sdk @aws-cdk/integ-runner aws-cdk-lib constructs multi-convention-namer"
+          "exec": "pnpm update @aws-cdk/integ-tests-alpha @time-loop/clickup-projen @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-sdk-client-mock esbuild eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-release jsii-rosetta jsii prettier projen standard-version ts-jest ts-node typescript @aws-sdk/client-cloudwatch @aws-sdk/client-service-quotas @aws-cdk/integ-runner aws-cdk-lib constructs multi-convention-namer"
         },
         {
           "exec": "npx projen"

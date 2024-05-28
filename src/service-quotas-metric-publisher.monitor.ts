@@ -13,7 +13,6 @@ import {
   GetServiceQuotaCommandInput,
 } from '@aws-sdk/client-service-quotas';
 
-import { String } from 'aws-sdk/clients/acm';
 import { IServiceQuota } from './service-quotas-metric-publisher';
 
 // Define the ServiceQuotaApplied object type
@@ -60,9 +59,9 @@ export const monitor = async () => {
         }.\n Data: ${JSON.stringify(data)}`,
       );
       servicesQuotasApplied.push({
-        serviceCode: data.Quota?.ServiceCode as String,
-        quotaName: data.Quota?.QuotaName as String,
-        quotaCode: data.Quota?.QuotaCode as String,
+        serviceCode: data.Quota?.ServiceCode as string,
+        quotaName: data.Quota?.QuotaName as string,
+        quotaCode: data.Quota?.QuotaCode as string,
         value: data.Quota?.Value,
       });
     }
