@@ -17,13 +17,13 @@ importers:
     devDependencies:
       '@aws-cdk/integ-runner':
         specifier: latest
-        version: 2.143.0-alpha.0
+        version: 2.147.2-alpha.0
       '@aws-cdk/integ-tests-alpha':
         specifier: latest
-        version: 2.143.0-alpha.0(aws-cdk-lib@2.105.0(constructs@10.0.5))(constructs@10.0.5)
+        version: 2.147.2-alpha.0(aws-cdk-lib@2.105.0(constructs@10.0.5))(constructs@10.0.5)
       '@time-loop/clickup-projen':
-        specifier: ^1.11.0
-        version: 1.11.0(projen@0.81.16(constructs@10.0.5))
+        specifier: ^1.12.2
+        version: 1.12.2(projen@0.81.17(constructs@10.0.5))
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -94,8 +94,8 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       projen:
-        specifier: ^0.81.16
-        version: 0.81.16(constructs@10.0.5)
+        specifier: ^0.81.17
+        version: 0.81.17(constructs@10.0.5)
       standard-version:
         specifier: ^9
         version: 9.5.0
@@ -124,23 +124,23 @@ packages:
   '@aws-cdk/asset-node-proxy-agent-v6@2.0.3':
     resolution: {integrity: sha512-twhuEG+JPOYCYPx/xy5uH2+VUsIEhPTzDY0F1KuB+ocjWWB/KEDiOVL19nHvbPCB6fhWnkykXEMJ4HHcKvjtvg==}
 
-  '@aws-cdk/aws-service-spec@0.1.3':
-    resolution: {integrity: sha512-nYgOQ7M6GShdidYDy1y0hDZew3Nle+DSS86MLJ5WxmQZKv92RdtPigHoH8sBfV+3AeJZJg+cCMm8RP0+07wctQ==}
+  '@aws-cdk/aws-service-spec@0.1.7':
+    resolution: {integrity: sha512-6fvUzbNYXvbZGQaBOko2a/xfJe7s5lBXHvsCRLpXS43iDn/A643b100kJvOP3tWmT+JwcjIEi3FTYVr8Td6Iaw==}
 
-  '@aws-cdk/integ-runner@2.143.0-alpha.0':
-    resolution: {integrity: sha512-AuWN6HBdJkEMjM+PqW3BUDiLQNqAcdrOJA/8w4AnRTnsqNFZspKB8nCxOhhQYsjvK4RRguFDs/XF7NFCXcyHug==}
+  '@aws-cdk/integ-runner@2.147.2-alpha.0':
+    resolution: {integrity: sha512-TK0OWN8W1OHE+E574daq682BJX483EPqhXeirQ9ykOEgEx9Z4aYWyM0cE4Odnm4zh3LyE/gMsFGbUkdXlnPZ8A==}
     engines: {node: '>= 14.15.0'}
     hasBin: true
 
-  '@aws-cdk/integ-tests-alpha@2.143.0-alpha.0':
-    resolution: {integrity: sha512-dlz4SF9ciBD8DfNiTvVlL0lIRdTXha7OB2a7lOgBYIlo2VG7UN5oZIczwSCANnf3JioHdWn7t61I8MSqm4DsCw==}
+  '@aws-cdk/integ-tests-alpha@2.147.2-alpha.0':
+    resolution: {integrity: sha512-o4l+mGiSErN5X/qN9OAaHpBbuIuWp+qv3N4pFBLJARCUudxi5pXtxy+Lxq1aSBqMn7xJQSqnh3wcOK1Adkw+Mg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
-      aws-cdk-lib: ^2.143.0
+      aws-cdk-lib: ^2.147.2
       constructs: ^10.0.0
 
-  '@aws-cdk/service-spec-types@0.0.71':
-    resolution: {integrity: sha512-HVs2BhcuWZNeF0CoJ8lRhHMD27h5D+dPvqjKgbF3NYWJW3lmdYueASRWTaZnLcND51c/Ar/ZXpXvv0kd6Wj5RQ==}
+  '@aws-cdk/service-spec-types@0.0.75':
+    resolution: {integrity: sha512-WWOUMJlRrj5GEm0FzW9ZCaQg2dyFaSmqkeB9yrW0NbJAXbWia5YjPe19HX1KHtkOPzhQOXPd3xUAt5tzengeKA==}
 
   '@aws-crypto/ie11-detection@3.0.0':
     resolution: {integrity: sha512-341lBBkiY1DfDNKai/wXM3aujNBkXR7tq1URPQDL9wi3AUbI80NR74uF1TXHMm7po1AcnFk8iu2S2IeU/+/A+Q==}
@@ -615,6 +615,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -622,6 +623,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@hutson/parse-repository-url@3.0.2':
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
@@ -931,8 +933,8 @@ packages:
     resolution: {integrity: sha512-+fEXJxGDLCoqRKVSmo0auGxaqbiCo+8oph+4auefYjaNxjOLKSY2MxVQfRzo65PaZv4fr+5lWg+au7vSuJJ/zw==}
     engines: {node: '>=16.0.0'}
 
-  '@time-loop/clickup-projen@1.11.0':
-    resolution: {integrity: sha512-bQCWTwwXImwoYxhlZP5X6oX33v59aP32RkK/HB5+UdvD5CebFpiPdU1TbUxdTs/97ZIZrGZCq20/5QdJfrRv0w==, tarball: https://npm.pkg.github.com/download/@time-loop/clickup-projen/1.11.0/589eac49e2260d3b752bf53ac70dce04f5accd2e}
+  '@time-loop/clickup-projen@1.12.2':
+    resolution: {integrity: sha512-JMXw7jNRLfz0B5AQoteJ4mpFiPm7RwVxIuV6IcgpCyJqMZ18p0+CBKJ3hLPVaIoRogtU7ZSYc0mp1PSDwsBDsQ==, tarball: https://npm.pkg.github.com/download/@time-loop/clickup-projen/1.12.2/1f0b6e7961ffda58b1f73492da74d10b8c3a42f0}
     engines: {node: '>= 18.17.1'}
     peerDependencies:
       projen: ^0.81.8
@@ -1203,8 +1205,8 @@ packages:
       - table
       - yaml
 
-  aws-cdk@2.143.0:
-    resolution: {integrity: sha512-lGnmedkE+slsl2xr0Vi516gKieOmE0BHeImdcALy5JKoeLdObDWiHLkMtLWm0Fil7h7cCEHqpzS+hY3emqjTOw==}
+  aws-cdk@2.147.2:
+    resolution: {integrity: sha512-mkrC47bQTPsBtHQqy0CNl+UqkRWU49l2msqM4+nW5txgRd0eW4Gzgj7XiVRAmZql3w3zmGtLfSf91maoEUrgoA==}
     engines: {node: '>= 14.15.0'}
     hasBin: true
 
@@ -1360,7 +1362,7 @@ packages:
     resolution: {integrity: sha512-zHig5N+tPWARooBnb0Zx1MFcdfpyJrfTJ3Y5L+IFvUm8rM74hHz66z0gw0x4tijh5CorKkKUCnW82R2vmpeCRA==}
 
   concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   concat-stream@2.0.0:
     resolution: {integrity: sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==}
@@ -2793,8 +2795,8 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  projen@0.81.16:
-    resolution: {integrity: sha512-AjzA5l/qqWJaQwX1FZbsY/TWqyS4vIsV2CfMw3wpqROthIfqCeqa3ov3xBK2YQXmMrDHB1NqZK3Z4kwzwWO0YQ==}
+  projen@0.81.17:
+    resolution: {integrity: sha512-8DDFvzA4hk69hNj0zGNa5psQHiwOOqYKt3tx9AHrX+acs4dQ6kjKEAZxyHi91+YjqLTGhfS6uRpx79ldRb4odg==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -2828,6 +2830,10 @@ packages:
   q@1.5.1:
     resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
+    deprecated: |-
+      You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
+      (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -3272,8 +3278,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.5.0-dev.20240528:
-    resolution: {integrity: sha512-lF9CgEwbCTMnq59hkXeSQOzUmqSxkhlTk5DuPKenvpyEVd7r1uH8q8EAgPaKhp5SO5m764uWJvE4MpvyXDKuJw==}
+  typescript@5.6.0-dev.20240630:
+    resolution: {integrity: sha512-AZ+Ec8/v9wH+iGZ2P0tmrEQxVtAasvQb7ezcxVKFlg+MwY0iylQVjBt/gKp8ppCpxJMkEPX52rFbC3Zdc9tEBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3420,24 +3426,24 @@ snapshots:
 
   '@aws-cdk/asset-node-proxy-agent-v6@2.0.3': {}
 
-  '@aws-cdk/aws-service-spec@0.1.3':
+  '@aws-cdk/aws-service-spec@0.1.7':
     dependencies:
-      '@aws-cdk/service-spec-types': 0.0.71
+      '@aws-cdk/service-spec-types': 0.0.75
       '@cdklabs/tskb': 0.0.3
 
-  '@aws-cdk/integ-runner@2.143.0-alpha.0':
+  '@aws-cdk/integ-runner@2.147.2-alpha.0':
     dependencies:
-      '@aws-cdk/aws-service-spec': 0.1.3
-      aws-cdk: 2.143.0
+      '@aws-cdk/aws-service-spec': 0.1.7
+      aws-cdk: 2.147.2
     optionalDependencies:
       fsevents: 2.3.2
 
-  '@aws-cdk/integ-tests-alpha@2.143.0-alpha.0(aws-cdk-lib@2.105.0(constructs@10.0.5))(constructs@10.0.5)':
+  '@aws-cdk/integ-tests-alpha@2.147.2-alpha.0(aws-cdk-lib@2.105.0(constructs@10.0.5))(constructs@10.0.5)':
     dependencies:
       aws-cdk-lib: 2.105.0(constructs@10.0.5)
       constructs: 10.0.5
 
-  '@aws-cdk/service-spec-types@0.0.71':
+  '@aws-cdk/service-spec-types@0.0.75':
     dependencies:
       '@cdklabs/tskb': 0.0.3
 
@@ -4827,9 +4833,9 @@ snapshots:
       '@smithy/types': 3.0.0
       tslib: 2.6.2
 
-  '@time-loop/clickup-projen@1.11.0(projen@0.81.16(constructs@10.0.5))':
+  '@time-loop/clickup-projen@1.12.2(projen@0.81.17(constructs@10.0.5))':
     dependencies:
-      projen: 0.81.16(constructs@10.0.5)
+      projen: 0.81.17(constructs@10.0.5)
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -5131,7 +5137,7 @@ snapshots:
       '@aws-cdk/asset-node-proxy-agent-v6': 2.0.3
       constructs: 10.0.5
 
-  aws-cdk@2.143.0:
+  aws-cdk@2.147.2:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -5571,7 +5577,7 @@ snapshots:
     dependencies:
       semver: 7.6.2
       shelljs: 0.8.5
-      typescript: 5.5.0-dev.20240528
+      typescript: 5.6.0-dev.20240630
 
   electron-to-chromium@1.4.763: {}
 
@@ -7114,7 +7120,7 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
-  projen@0.81.16(constructs@10.0.5):
+  projen@0.81.17(constructs@10.0.5):
     dependencies:
       constructs: 10.0.5
 
@@ -7599,7 +7605,7 @@ snapshots:
 
   typescript@5.3.3: {}
 
-  typescript@5.5.0-dev.20240528: {}
+  typescript@5.6.0-dev.20240630: {}
 
   uglify-js@3.17.4:
     optional: true
