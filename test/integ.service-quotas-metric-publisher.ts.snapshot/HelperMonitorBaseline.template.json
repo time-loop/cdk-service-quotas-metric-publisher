@@ -57,12 +57,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-425845004253-us-west-2",
-     "S3Key": "b5ae93b59b14215a5db218f1bbf46b72944e9fa6d91538a1022fcf9c61910186.zip"
-    },
-    "Environment": {
-     "Variables": {
-      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
-     }
+     "S3Key": "abe20e944fd907bb8936dc5db3d6b66fdec6ab095fcf6cbda4178a65ca345dd0.zip"
     },
     "FunctionName": "GetServiceQuotaLimitIntegRunnerFunction",
     "Handler": "index.handler",
