@@ -1,10 +1,13 @@
 {
   "enableLookups": true,
-  "version": "34.0.0",
+  "version": "39.0.0",
   "testCases": {
     "integ/DefaultTest": {
       "stacks": [
         "MonitorBaselineSevicesQuotas"
+      ],
+      "regions": [
+        "us-west-2"
       ],
       "cdkCommandOptions": {
         "destroy": {

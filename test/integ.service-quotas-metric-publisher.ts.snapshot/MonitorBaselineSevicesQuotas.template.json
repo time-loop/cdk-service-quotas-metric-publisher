@@ -73,11 +73,10 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-425845004253-us-west-2",
-     "S3Key": "1a0598cc05b30d5f960a82f8e85e49a2525978dfe949e09bb5414f0d91c53cee.zip"
+     "S3Key": "d63fb377b13b713bf523e20efac6da8be17fc7cc1d277cb4e84b99941a42f20d.zip"
     },
     "Environment": {
      "Variables": {
-      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
       "CW_NAMESPACE": "AWS/ServiceQuotaLimit",
       "SERVICE_QUOTAS_LIST": "[{\"serviceCode\":\"elasticloadbalancing\",\"quotaCode\":\"L-7E6692B2\"}]"
      }
@@ -217,11 +216,11 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Handler": "index.handler",
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs20.x",
     "Timeout": 900,
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-425845004253-us-west-2",
-     "S3Key": "5bc602ecde93c947efe5899ae355f999986a1acbe610b1c0b9c468d738857555.zip"
+     "S3Key": "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d.zip"
     },
     "Role": {
      "Fn::GetAtt": [

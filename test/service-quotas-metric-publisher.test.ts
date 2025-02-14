@@ -5,9 +5,10 @@ import { ServiceQuotasMetricPublisher, ServiceQuotasMetricPublisherProps } from 
 
 let app: App;
 let stack: Stack;
-
 let template: Template;
-let defaultServiceQuotasMetricPublisherProps: ServiceQuotasMetricPublisherProps = {
+let serviceQuotasMetricPublisher: ServiceQuotasMetricPublisher;
+
+const defaultServiceQuotasMetricPublisherProps: ServiceQuotasMetricPublisherProps = {
   publishFrequency: 1,
   cwNamespace: 'AWS/ServiceQuotaLimit',
   cloudwatchLogsRetention: 7,
@@ -18,20 +19,19 @@ let defaultServiceQuotasMetricPublisherProps: ServiceQuotasMetricPublisherProps 
     },
   ],
 };
-let serviceQuotasMetricPublisher: ServiceQuotasMetricPublisher;
 
 const createServiceQuotaMetricPublisher = function (id: string, props?: ServiceQuotasMetricPublisherProps) {
   serviceQuotasMetricPublisher = new ServiceQuotasMetricPublisher(
     stack,
     new Namer([id]),
-    props as ServiceQuotasMetricPublisherProps,
+    props || ({} as ServiceQuotasMetricPublisherProps),
   );
   template = Template.fromStack(stack);
 };
 
 describe('ServiceQuotasMetricPublisher', () => {
   describe('default', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       app = new App();
       stack = new Stack(app, 'test');
     });
@@ -41,8 +41,7 @@ describe('ServiceQuotasMetricPublisher', () => {
       expect(serviceQuotasMetricPublisher.publishFrequency).toEqual(1);
     });
     it('creates resources with default props', () => {
-      defaultServiceQuotasMetricPublisherProps = {};
-      createServiceQuotaMetricPublisher('noProps', defaultServiceQuotasMetricPublisherProps);
+      createServiceQuotaMetricPublisher('noProps');
       template.resourceCountIs('AWS::Lambda::Function', 2);
       expect(serviceQuotasMetricPublisher.publishFrequency).toEqual(1);
     });
