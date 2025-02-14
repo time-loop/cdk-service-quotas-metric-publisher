@@ -62,6 +62,7 @@ const assertionStack = new AssertionStack(app, {
 const integ = new IntegTest(app, 'integ', {
   testCases: [stack],
   enableLookups: true,
+  regions: [IntegTestResources.AWS_REGION],
   cdkCommandOptions: {
     destroy: {
       args: {

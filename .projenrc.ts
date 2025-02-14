@@ -1,5 +1,6 @@
 import { clickupCdk } from '@time-loop/clickup-projen';
 import { JsonPatch, javascript } from 'projen';
+import { IntegTestResources } from './test/utils/integ-tests-types';
 
 const name = 'cdk-service-quotas-metric-publisher';
 const project = new clickupCdk.ClickUpCdkConstructLibrary({
@@ -27,8 +28,8 @@ build?.patch(
     name: 'Configure AWS Credentials',
     uses: 'aws-actions/configure-aws-credentials@v2',
     with: {
-      'aws-region': 'us-west-2',
-      'role-to-assume': `arn:aws:iam::425845004253:role/${name}-github-actions-role`,
+      'aws-region': IntegTestResources.AWS_REGION,
+      'role-to-assume': `arn:aws:iam::${IntegTestResources.AWS_ACCOUNT}:role/${name}-github-actions-role`,
       'role-duration-seconds': 900,
     },
   }),
