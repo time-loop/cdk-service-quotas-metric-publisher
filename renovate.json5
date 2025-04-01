@@ -74,6 +74,7 @@
     "constructs",
     "node",
     "@time-loop/clickup-projen",
+    "pnpm",
     "projen"
   ],
   "rangeStrategy": "bump",
