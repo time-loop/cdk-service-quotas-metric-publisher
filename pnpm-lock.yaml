@@ -19,7 +19,7 @@ importers:
         specifier: latest
         version: 2.186.3
       '@aws-cdk/integ-tests-alpha':
-        specifier: 2.190.0-alpha.0
+        specifier: latest
         version: 2.190.0-alpha.0(aws-cdk-lib@2.189.0(constructs@10.0.5))(constructs@10.0.5)
       '@time-loop/clickup-projen':
         specifier: ^1.18.0
