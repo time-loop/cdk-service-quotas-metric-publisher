@@ -38,13 +38,13 @@
   },
   "devDependencies": {
     "@aws-cdk/integ-runner": "latest",
-    "@aws-cdk/integ-tests-alpha": "latest",
+    "@aws-cdk/integ-tests-alpha": "2.190.0-alpha.0",
     "@time-loop/clickup-projen": "^1.18.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
-    "aws-cdk-lib": "2.178.2",
+    "aws-cdk-lib": "2.189.0",
     "aws-sdk-client-mock": "^4.0.0",
     "commit-and-tag-version": "^12",
     "constructs": "10.0.5",
@@ -70,7 +70,7 @@
     "typescript": "~5.7.0"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.178.2",
+    "aws-cdk-lib": "^2.189.0",
     "constructs": "^10.0.5",
     "multi-convention-namer": "^0.1.15"
   },

@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { IntegTest, ExpectedResult } from '@aws-cdk/integ-tests-alpha';
-import { App, Stack, StackProps, aws_lambda_nodejs, Duration, aws_iam } from 'aws-cdk-lib';
+import { App, Stack, StackProps, aws_lambda, aws_lambda_nodejs, Duration, aws_iam } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Namer } from 'multi-convention-namer';
 import { IntegTestResources } from './utils/integ-tests-types';
@@ -35,6 +35,7 @@ export class AssertionStack extends Stack {
     new aws_lambda_nodejs.NodejsFunction(this, 'GetServiceQuotaLimitIntegRunnerFunction', {
       functionName: 'GetServiceQuotaLimitIntegRunnerFunction',
       entry: join(__dirname, 'utils/get-service-quotas-metrics.ts'),
+      runtime: aws_lambda.determineLatestNodeRuntime(this),
       timeout: Duration.seconds(15),
     }).addToRolePolicy(
       new aws_iam.PolicyStatement({

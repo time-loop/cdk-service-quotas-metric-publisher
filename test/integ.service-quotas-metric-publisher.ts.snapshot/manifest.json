@@ -1,5 +1,5 @@
 {
-  "version": "39.0.0",
+  "version": "43.0.0",
   "artifacts": {
     "MonitorBaselineSevicesQuotas.assets": {
       "type": "cdk:asset-manifest",
@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::425845004253:role/cdk-hnb659fds-deploy-role-425845004253-us-west-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::425845004253:role/cdk-hnb659fds-cfn-exec-role-425845004253-us-west-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-425845004253-us-west-2/e81040dced27b2aadfe8cf1cf042fce7fdf5a2a89c0131b54d5d51993ed709bc.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-425845004253-us-west-2/d93aa4007e392ad9be8391f74c39f1ddccae30e61115d7609050b58496877ea1.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -34,11 +34,16 @@
         "MonitorBaselineSevicesQuotas.assets"
       ],
       "metadata": {
+        "/MonitorBaselineSevicesQuotas/MonitorBaselineSevicesQuotas": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "When using NODEJS_LATEST the runtime version may change as new runtimes are released, this may affect the availability of packages shipped with the environment. Ensure that any external dependencies are available through layers or specify a specific runtime version. [ack: @aws-cdk/aws-lambda-nodejs:variableRuntimeExternals]"
+          }
+        ],
         "/MonitorBaselineSevicesQuotas/MonitorBaselineSevicesQuotas/monitor": [
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
-              "runtime": "*",
               "bundling": {
                 "externalModules": "*",
                 "minify": true
@@ -46,6 +51,7 @@
               "handler": "*",
               "logRetention": 90,
               "memorySize": "*",
+              "runtime": "*",
               "timeout": "*",
               "code": "*"
             }
@@ -53,7 +59,6 @@
           {
             "type": "aws:cdk:analytics:construct",
             "data": {
-              "runtime": "*",
               "bundling": {
                 "externalModules": "*",
                 "minify": true
@@ -61,6 +66,7 @@
               "handler": "*",
               "logRetention": 90,
               "memorySize": "*",
+              "runtime": "*",
               "timeout": "*"
             }
           },
@@ -351,7 +357,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::425845004253:role/cdk-hnb659fds-deploy-role-425845004253-us-west-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::425845004253:role/cdk-hnb659fds-cfn-exec-role-425845004253-us-west-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-425845004253-us-west-2/a73f8eeace0d05808ea7f00b4f6f0c4bae0ef8f635601eba7a26a40c211d63b8.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-425845004253-us-west-2/63ccc05498dcc7a6e74965f243c4009987b59e516843f1d468a228f921f08395.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -373,8 +379,8 @@
             "data": {
               "functionName": "*",
               "entry": "*",
-              "timeout": "*",
               "runtime": "*",
+              "timeout": "*",
               "code": "*",
               "handler": "*"
             }
@@ -384,6 +390,7 @@
             "data": {
               "functionName": "*",
               "entry": "*",
+              "runtime": "*",
               "timeout": "*"
             }
           }
@@ -514,7 +521,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/656308f36047339bd692a421bc88d5e07469dce01a75d958caa1cacc8d161a4b.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/aa3dad04b0cc1e8dda578d72958aa1cea09d9231a0112cc5548552de4d559745.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -603,5 +610,6 @@
         "file": "tree.json"
       }
     }
-  }
+  },
+  "minimumCliVersion": "2.1008.0"
 }
