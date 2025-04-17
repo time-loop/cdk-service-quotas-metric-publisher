@@ -1,7 +1,8 @@
 {
-  "version": "39.0.0",
+  "version": "41.0.0",
   "files": {
     "d63fb377b13b713bf523e20efac6da8be17fc7cc1d277cb4e84b99941a42f20d": {
+      "displayName": "MonitorBaselineSevicesQuotas/monitor/Code",
       "source": {
         "path": "asset.d63fb377b13b713bf523e20efac6da8be17fc7cc1d277cb4e84b99941a42f20d",
         "packaging": "zip"
@@ -16,6 +17,7 @@
       }
     },
     "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d": {
+      "displayName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
       "source": {
         "path": "asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
         "packaging": "zip"
@@ -29,7 +31,8 @@
         }
       }
     },
-    "e81040dced27b2aadfe8cf1cf042fce7fdf5a2a89c0131b54d5d51993ed709bc": {
+    "d93aa4007e392ad9be8391f74c39f1ddccae30e61115d7609050b58496877ea1": {
+      "displayName": "MonitorBaselineSevicesQuotas Template",
       "source": {
         "path": "MonitorBaselineSevicesQuotas.template.json",
         "packaging": "file"
@@ -37,7 +40,7 @@
       "destinations": {
         "425845004253-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-425845004253-us-west-2",
-          "objectKey": "e81040dced27b2aadfe8cf1cf042fce7fdf5a2a89c0131b54d5d51993ed709bc.json",
+          "objectKey": "d93aa4007e392ad9be8391f74c39f1ddccae30e61115d7609050b58496877ea1.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::425845004253:role/cdk-hnb659fds-file-publishing-role-425845004253-us-west-2"
         }
