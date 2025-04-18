@@ -63,7 +63,6 @@ export class ServiceQuotasMetricPublisher extends Construct {
     const myConstruct = this;
 
     this.handler = new aws_lambda_nodejs.NodejsFunction(myConstruct, 'monitor', {
-      runtime: aws_lambda.Runtime.NODEJS_18_X,
       bundling: {
         externalModules: ['@aws-sdk/*'],
         minify: true,
@@ -71,6 +70,7 @@ export class ServiceQuotasMetricPublisher extends Construct {
       handler: 'monitor',
       logRetention: props.cloudwatchLogsRetention ?? aws_logs.RetentionDays.THREE_MONTHS,
       memorySize: 512,
+      runtime: aws_lambda.determineLatestNodeRuntime(this),
       timeout: Duration.seconds(45),
     });
 
