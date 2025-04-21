@@ -3,8 +3,8 @@ import { IntegTest, ExpectedResult } from '@aws-cdk/integ-tests-alpha';
 import { App, Stack, StackProps, aws_lambda, aws_lambda_nodejs, Duration, aws_iam } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Namer } from 'multi-convention-namer';
-import { IntegTestResources } from './utils/integ-tests-types';
 import { ServiceQuotasMetricPublisher } from '../src';
+import { IntegTestResources } from './utils/integ-tests-types';
 
 // The BaselineStack creates an instance of ServiceQuotasMetricPublisher
 export class BaselineStack extends Stack {
